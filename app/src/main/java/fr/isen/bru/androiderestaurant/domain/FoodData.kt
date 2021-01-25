@@ -1,4 +1,4 @@
-package fr.isen.bru.androiderestaurant
+package fr.isen.bru.androiderestaurant.domain
 
 class FoodData {
     var itemName: String? = null

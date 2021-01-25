@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import java.util.*
+import fr.isen.bru.androiderestaurant.domain.FoodData
 import kotlin.collections.ArrayList
 
 class HomeActivity : AppCompatActivity() {
@@ -37,7 +37,7 @@ class HomeActivity : AppCompatActivity() {
             Toast.makeText(this.applicationContext, "Entrées", Toast.LENGTH_SHORT).show()
             changePage("Entrées")
         }else if (R.id.plat == view?.id){
-            Toast.makeText(this.applicationContext, "Plat", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this.applicationContext, "Plats", Toast.LENGTH_SHORT).show()
             changePage("Plat")
         }else if (R.id.dessert == view?.id){
             Toast.makeText(this.applicationContext, "Dessert", Toast.LENGTH_SHORT).show()
