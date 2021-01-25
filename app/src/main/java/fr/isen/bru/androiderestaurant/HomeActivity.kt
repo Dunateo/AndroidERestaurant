@@ -35,19 +35,21 @@ class HomeActivity : AppCompatActivity() {
     fun btnMenu(view: View?) {
         if (R.id.entree == view?.id){
             Toast.makeText(this.applicationContext, "Entrées", Toast.LENGTH_SHORT).show()
+            changePage("Entrées")
         }else if (R.id.plat == view?.id){
             Toast.makeText(this.applicationContext, "Plat", Toast.LENGTH_SHORT).show()
+            changePage("Plat")
         }else if (R.id.dessert == view?.id){
             Toast.makeText(this.applicationContext, "Dessert", Toast.LENGTH_SHORT).show()
+            changePage("Dessert")
         }
     }
 
 
-    fun btnRecipe(view: View?) {
+    fun changePage(string: String) {
         startActivity(
-            Intent(applicationContext, DetailActivity::class.java)
-                .putExtra("recipeNameKey", myFoodList.toString())
-
+            Intent(applicationContext, ListActivity::class.java)
+                .putExtra("title",string )
         )
     }
 
