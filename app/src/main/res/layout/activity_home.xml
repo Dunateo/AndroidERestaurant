@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".HomeActivity">
+    tools:context=".HomeActivity"
+    android:background="@drawable/backsafari"
+    >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -16,9 +18,9 @@
                 <ImageView
                     android:id="@+id/iv_foodImage"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="100dp"
                     android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/carton_image" />
+                    app:srcCompat="@drawable/safari" />
 
                 <Button
                     android:id="@+id/entree"
@@ -28,6 +30,7 @@
                     android:textSize="22sp"
                     android:background="@color/colorOrange"
                     android:textColor="#ffffff"
+                    android:layout_marginTop="100dp"
                     android:onClick="btnEntree"
                     />
                 <Button
@@ -38,6 +41,7 @@
                     android:textSize="22sp"
                     android:background="@color/colorOrange"
                     android:textColor="#ffffff"
+                    android:layout_marginTop="10dp"
                     android:onClick="btnRecipe"
                     />
                 <Button
@@ -48,6 +52,7 @@
                     android:textSize="22sp"
                     android:background="@color/colorOrange"
                     android:textColor="#ffffff"
+                    android:layout_marginTop="10dp"
                     />
 
 
