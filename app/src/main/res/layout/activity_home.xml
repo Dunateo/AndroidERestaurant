@@ -18,7 +18,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/sauve_hibou_1" />
+                    app:srcCompat="@drawable/carton_image" />
 
                 <Button
                     android:id="@+id/entree"
@@ -38,6 +38,7 @@
                     android:textSize="22sp"
                     android:background="@color/colorOrange"
                     android:textColor="#ffffff"
+                    android:onClick="btnRecipe"
                     />
                 <Button
                     android:id="@+id/dessert"

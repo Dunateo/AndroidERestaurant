@@ -15,15 +15,16 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        myFoodList = ArrayList()
-        mano(myFoodList)
+        myFoodList = mano()
     }
 
-    fun mano(arrayList: ArrayList<FoodData>){
+    fun mano(): List<FoodData>{
+        var truc :ArrayList<FoodData> = ArrayList()
         val elem = FoodData()
-        arrayList.add(elem);
-        arrayList.add(elem);
-        arrayList.add(elem);
+        truc.add(elem);
+        truc.add(elem);
+        truc.add(elem);
+        return truc;
     }
     fun btnEntree(view: View?) {
        val toat = Toast.makeText(this.applicationContext, "Entrées", Toast.LENGTH_SHORT)
@@ -32,7 +33,7 @@ class HomeActivity : AppCompatActivity() {
     fun btnRecipe(view: View?) {
         startActivity(
             Intent(applicationContext, DetailActivity::class.java)
-                .putExtra("recipeNameKey", myFoodList.s)
+                .putExtra("recipeNameKey", myFoodList.toString())
 
         )
     }
