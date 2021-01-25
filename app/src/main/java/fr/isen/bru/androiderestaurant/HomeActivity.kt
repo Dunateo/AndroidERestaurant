@@ -18,6 +18,11 @@ class HomeActivity : AppCompatActivity() {
         myFoodList = mano()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        Toast.makeText(this.applicationContext, "Destroy main", Toast.LENGTH_SHORT).show()
+    }
+
     fun mano(): List<FoodData>{
         var truc :ArrayList<FoodData> = ArrayList()
         val elem = FoodData()
@@ -26,10 +31,18 @@ class HomeActivity : AppCompatActivity() {
         truc.add(elem);
         return truc;
     }
-    fun btnEntree(view: View?) {
-       val toat = Toast.makeText(this.applicationContext, "Entrées", Toast.LENGTH_SHORT)
-        toat.show()
+
+    fun btnMenu(view: View?) {
+        if (R.id.entree == view?.id){
+            Toast.makeText(this.applicationContext, "Entrées", Toast.LENGTH_SHORT).show()
+        }else if (R.id.plat == view?.id){
+            Toast.makeText(this.applicationContext, "Plat", Toast.LENGTH_SHORT).show()
+        }else if (R.id.dessert == view?.id){
+            Toast.makeText(this.applicationContext, "Dessert", Toast.LENGTH_SHORT).show()
+        }
     }
+
+
     fun btnRecipe(view: View?) {
         startActivity(
             Intent(applicationContext, DetailActivity::class.java)
