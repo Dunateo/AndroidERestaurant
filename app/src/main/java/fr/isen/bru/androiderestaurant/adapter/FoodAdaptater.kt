@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import fr.isen.bru.androiderestaurant.DetailActivity
 import fr.isen.bru.androiderestaurant.R
 import fr.isen.bru.androiderestaurant.domain.FoodData
@@ -50,7 +51,12 @@ class FoodAdaptater(
         textView.text = data.name_fr
 
         val img = viewHolder.img
-        img.setImageURI(Uri.parse(data.images[0]))
+        val picasso = Picasso.get()
+        if(data.images[0].isNotEmpty()){
+            picasso.load(data.images[0]).into(img)
+        }else{
+            picasso.load(R.drawable.crocodile).into(img)
+        }
 
         textView.setOnClickListener {
 
@@ -59,7 +65,7 @@ class FoodAdaptater(
             intent.putExtra("Description", data.ingredients.toString())
             intent.putExtra("price", data.prices[0].price.toString())
             intent.putExtra("RecipeName", data.name_fr)
-            intent.putExtra("Image", data.images.toString())
+            intent.putExtra("Image", data.images[0])
             intent.putExtra("keyValue", data.id)
             context.startActivity(intent)
         }

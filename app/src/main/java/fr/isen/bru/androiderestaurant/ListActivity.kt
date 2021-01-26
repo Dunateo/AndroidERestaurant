@@ -68,8 +68,7 @@ class ListActivity : AppCompatActivity(){
 
                 foodRecycler.isVisible = true
             },
-                Response.ErrorListener { error ->
-                    System.err.println( "Error: ${error.message}")
+                Response.ErrorListener { error -> System.err.println( "Error: ${error.message}")
                 })
 
         requestQueue.add(jsonObjectRequest)

@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.squareup.picasso.Picasso
 
 class DetailActivity : AppCompatActivity() {
     var foodDescription: TextView? = null
@@ -30,7 +31,13 @@ class DetailActivity : AppCompatActivity() {
             imageUrl = mBundle.getString("Image")
             RecipeName!!.text = mBundle.getString("RecipeName")
             RecipePrice!!.text = mBundle.getString("price")
-            // foodImage.setImageResource(mBundle.getInt("Image"));
+
+            val picasso = Picasso.get()
+            if(imageUrl.isNullOrEmpty()){
+                picasso.load(R.drawable.crocodile).into(foodImage)
+            }else{
+                picasso.load(imageUrl).into(foodImage)
+            }
 
         }
     }
