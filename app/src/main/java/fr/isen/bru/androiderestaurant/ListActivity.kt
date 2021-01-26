@@ -63,7 +63,7 @@ class ListActivity : AppCompatActivity(){
                //System.out.println(this.CAT)
 
                 val foodRecycler = findViewById<RecyclerView>(R.id.RecyclerView)
-                foodRecycler.adapter = FoodAdaptater(dataRecycler.data, applicationContext)
+                foodRecycler.adapter = FoodAdaptater(dataRecycler.items, applicationContext)
                 foodRecycler.layoutManager = LinearLayoutManager(this)
 
                 foodRecycler.isVisible = true
