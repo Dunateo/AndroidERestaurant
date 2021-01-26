@@ -14,6 +14,7 @@ import com.android.volley.toolbox.Volley
 import com.google.gson.GsonBuilder
 import fr.isen.bru.androiderestaurant.adapter.FoodAdaptater
 import fr.isen.bru.androiderestaurant.domain.FoodData
+import fr.isen.bru.androiderestaurant.domain.ResponseData
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -35,20 +36,14 @@ class ListActivity : AppCompatActivity(){
         }
 
         val foodRecycler = findViewById<RecyclerView>(R.id.RecyclerView)
-        val data = listOf(FoodData("crocodile","petite douceur","30",null),
-        FoodData("kangouroo","les iles sont pour vous", "20", null)
-        )
 
-        val adapter =FoodAdaptater(data, applicationContext)
-        foodRecycler.adapter = adapter
-        foodRecycler.layoutManager = LinearLayoutManager(this)
 
-        volleyGet()
+        volleyGet(foodRecycler)
 
 
     }
 
-    private fun volleyGet() {
+    private fun volleyGet( foodRecycler :RecyclerView) {
 
         val jsonResponses: MutableList<String> = ArrayList()
         val parameter = JSONObject()
@@ -60,17 +55,17 @@ class ListActivity : AppCompatActivity(){
             JsonObjectRequest(Request.Method.POST, API_URL, parameter, Response.Listener<JSONObject?>() {
                 fun onResponse(response: JSONObject) {
                     try {
-                        val jsonArray = response.getJSONArray("data")
-                        for (i in 0 until jsonArray.length()) {
-                            val jsonObject = jsonArray.getJSONObject(i)
-                            val email = jsonObject.getString("email")
-                            jsonResponses.add(email)
-                        }
+
+                        val result :Array<ResponseData> = parser.fromJson(response["data"].toString(), Array<ResponseData>::class.java)
+                        val adapter =FoodAdaptater(result[0].data, applicationContext)
+                        foodRecycler.adapter = adapter
+                        foodRecycler.layoutManager = LinearLayoutManager(this)
                     } catch (e: JSONException) {
                         e.printStackTrace()
                     }
                 }
             }, Response.ErrorListener { error -> error.printStackTrace() })
+
         requestQueue.add(jsonObjectRequest)
     }
 

@@ -38,23 +38,23 @@ class FoodAdaptater(
         val data: FoodData = data[position]
 
         val desc = viewHolder.desc
-        desc.text = data.itemDescription
+        desc.text = data.categ_name_fr
 
         val price = viewHolder.price
-        price.text = data.itemPrice
+        price.text = data.prices.toString()
 
         val textView = viewHolder.text
-        textView.text = data.itemName
+        textView.text = data.name_fr
 
         textView.setOnClickListener {
 
             val intent = Intent(context, DetailActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            intent.putExtra("Description", data.itemDescription)
-            intent.putExtra("price", data.itemPrice)
-            intent.putExtra("RecipeName", data.itemName)
-            intent.putExtra("Image", data.itemImage)
-            intent.putExtra("keyValue", data.key)
+            intent.putExtra("Description", data.ingredients.toString())
+            intent.putExtra("price", data.prices.toString())
+            intent.putExtra("RecipeName", data.name_fr)
+            intent.putExtra("Image", data.images.toString())
+            intent.putExtra("keyValue", data.id)
             context.startActivity(intent)
         }
     }
