@@ -15,7 +15,6 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        myFoodList = mano()
     }
 
     override fun onDestroy() {
@@ -23,33 +22,26 @@ class HomeActivity : AppCompatActivity() {
         Toast.makeText(this.applicationContext, "Destroy main", Toast.LENGTH_SHORT).show()
     }
 
-    fun mano(): List<FoodData>{
-        var truc :ArrayList<FoodData> = ArrayList()
-        val elem = FoodData()
-        truc.add(elem);
-        truc.add(elem);
-        truc.add(elem);
-        return truc;
-    }
 
     fun btnMenu(view: View?) {
         if (R.id.entree == view?.id){
             Toast.makeText(this.applicationContext, "Entrées", Toast.LENGTH_SHORT).show()
-            changePage("Entrées")
+            changePage("Entrées",0)
         }else if (R.id.plat == view?.id){
             Toast.makeText(this.applicationContext, "Plats", Toast.LENGTH_SHORT).show()
-            changePage("Plat")
+            changePage("Plat",1)
         }else if (R.id.dessert == view?.id){
             Toast.makeText(this.applicationContext, "Dessert", Toast.LENGTH_SHORT).show()
-            changePage("Dessert")
+            changePage("Dessert",2)
         }
     }
 
 
-    fun changePage(string: String) {
+    fun changePage(string: String, category :Int) {
         startActivity(
             Intent(applicationContext, ListActivity::class.java)
                 .putExtra("title",string )
+                .putExtra("cat", category)
         )
     }
 

@@ -51,7 +51,7 @@ class FoodAdaptater(
             val intent = Intent(context, DetailActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             intent.putExtra("Description", data.ingredients.toString())
-            intent.putExtra("price", data.prices.toString())
+            intent.putExtra("price", data.prices[0])
             intent.putExtra("RecipeName", data.name_fr)
             intent.putExtra("Image", data.images.toString())
             intent.putExtra("keyValue", data.id)
