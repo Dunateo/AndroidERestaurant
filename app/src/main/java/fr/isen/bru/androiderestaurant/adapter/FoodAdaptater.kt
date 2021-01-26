@@ -18,9 +18,9 @@ class FoodAdaptater(
 ) : RecyclerView.Adapter<FoodAdaptater.ViewHolder>() {
 
     inner class ViewHolder(dataView: View) : RecyclerView.ViewHolder(dataView) {
-        val text: TextView = itemView.findViewById(R.id.tvTitle)
-        val desc: TextView = itemView.findViewById(R.id.tvDescription)
-        val price: TextView = itemView.findViewById(R.id.tvPrice)
+        val text: TextView = dataView.findViewById(R.id.tvTitle)
+        val desc: TextView = dataView.findViewById(R.id.tvDescription)
+        val price: TextView = dataView.findViewById(R.id.tvPrice)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodAdaptater.ViewHolder {
@@ -36,6 +36,7 @@ class FoodAdaptater(
     override fun onBindViewHolder(viewHolder: FoodAdaptater.ViewHolder, position: Int) {
 
         val data: FoodData = data[position]
+
         val desc = viewHolder.desc
         desc.text = data.itemDescription
 
@@ -49,7 +50,11 @@ class FoodAdaptater(
 
             val intent = Intent(context, DetailActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            intent.putExtra(ITEM_ID, data.toString())
+            intent.putExtra("Description", data.itemDescription)
+            intent.putExtra("price", data.itemPrice)
+            intent.putExtra("RecipeName", data.itemName)
+            intent.putExtra("Image", data.itemImage)
+            intent.putExtra("keyValue", data.key)
             context.startActivity(intent)
         }
     }
@@ -58,8 +63,4 @@ class FoodAdaptater(
         return data.size
     }
 
-    companion object {
-        const val TAG = "FoodAdapater"
-        const val ITEM_ID = "item_id"
-    }
 }
