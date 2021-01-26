@@ -19,6 +19,8 @@ class FoodAdaptater(
 
     inner class ViewHolder(dataView: View) : RecyclerView.ViewHolder(dataView) {
         val text: TextView = itemView.findViewById(R.id.tvTitle)
+        val desc: TextView = itemView.findViewById(R.id.tvDescription)
+        val price: TextView = itemView.findViewById(R.id.tvPrice)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodAdaptater.ViewHolder {
@@ -34,6 +36,11 @@ class FoodAdaptater(
     override fun onBindViewHolder(viewHolder: FoodAdaptater.ViewHolder, position: Int) {
 
         val data: FoodData = data[position]
+        val desc = viewHolder.desc
+        desc.text = data.itemDescription
+
+        val price = viewHolder.price
+        price.text = data.itemPrice
 
         val textView = viewHolder.text
         textView.text = data.itemName
@@ -42,7 +49,7 @@ class FoodAdaptater(
 
             val intent = Intent(context, DetailActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            intent.putExtra(ITEM_ID, data.key)
+            intent.putExtra(ITEM_ID, data.toString())
             context.startActivity(intent)
         }
     }
