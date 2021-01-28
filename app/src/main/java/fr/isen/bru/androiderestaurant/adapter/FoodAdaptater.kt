@@ -8,11 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import fr.isen.bru.androiderestaurant.DetailActivity
 import fr.isen.bru.androiderestaurant.R
 import fr.isen.bru.androiderestaurant.domain.FoodData
+import java.lang.StringBuilder
 
 
 class FoodAdaptater(
@@ -25,6 +27,7 @@ class FoodAdaptater(
         val desc: TextView = dataView.findViewById(R.id.tvDescription)
         val price: TextView = dataView.findViewById(R.id.tvPrice)
         val img:ImageView = dataView.findViewById(R.id.ivImage)
+        val card: CardView = dataView.findViewById(R.id.myCardView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodAdaptater.ViewHolder {
@@ -45,7 +48,9 @@ class FoodAdaptater(
         desc.text = data.categ_name_fr
 
         val price = viewHolder.price
-        price.text = data.prices[0].price.toString()
+        val pr :StringBuilder =StringBuilder(data.prices[0].price.toString())
+        pr.append( " Rs")
+        price.text = pr
 
         val textView = viewHolder.text
         textView.text = data.name_fr
@@ -58,12 +63,13 @@ class FoodAdaptater(
             picasso.load(R.drawable.crocodile).into(img)
         }
 
-        textView.setOnClickListener {
+        val card = viewHolder.card
+        card.setOnClickListener {
 
             val intent = Intent(context, DetailActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            intent.putExtra("Description", data.ingredients.toString())
-            intent.putExtra("price", data.prices[0].price.toString())
+            intent.putExtra("Desc", data)
+            intent.putExtra("price", pr.toString())
             intent.putExtra("RecipeName", data.name_fr)
             intent.putExtra("Image", data.images[0])
             intent.putExtra("keyValue", data.id)

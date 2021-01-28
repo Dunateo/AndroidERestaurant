@@ -3,6 +3,7 @@ package fr.isen.bru.androiderestaurant
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,7 +27,6 @@ class ListActivity : AppCompatActivity(){
     private var title:TextView? = null
     private val API_URL = "http://test.api.catering.bluecodegames.com/menu"
     private var CAT:Int = 0
-    //private lateinit var foodRecycler:RecyclerView
     private lateinit var dataRecycler:ResponseData
 
 
@@ -69,6 +69,7 @@ class ListActivity : AppCompatActivity(){
                 foodRecycler.isVisible = true
             },
                 Response.ErrorListener { error -> System.err.println( "Error: ${error.message}")
+                    Toast.makeText(applicationContext,"Error: ${error.message}",Toast.LENGTH_LONG ).show()
                 })
 
         requestQueue.add(jsonObjectRequest)
