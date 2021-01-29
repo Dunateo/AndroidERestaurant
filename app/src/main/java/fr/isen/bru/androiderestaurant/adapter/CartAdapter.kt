@@ -16,7 +16,7 @@ import fr.isen.bru.androiderestaurant.domain.OrderData
 
 
 class CartAdapter(
-    private val data: List<OrderData>,
+    private val data: MutableList<OrderData>,
     private val context: Context
 ) : RecyclerView.Adapter<CartAdapter.ViewHolder>() {
 

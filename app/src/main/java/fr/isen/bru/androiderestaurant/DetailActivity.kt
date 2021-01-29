@@ -12,9 +12,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
+import com.google.gson.JsonArray
 import fr.isen.bru.androiderestaurant.adapter.ViewPagerAdapter
 import fr.isen.bru.androiderestaurant.domain.FoodData
 import fr.isen.bru.androiderestaurant.domain.OrderData
+import java.io.FileNotFoundException
 
 
 class DetailActivity : AppCompatActivity() {
@@ -24,9 +26,10 @@ class DetailActivity : AppCompatActivity() {
     var foodImage: ViewPager? = null
     var key: String? = ""
     var imageUrl: String? = ""
-    var quantity:Int = 0
+    var quantity:Int = 1
     var quantityText : TextView? = null
     lateinit var order : OrderData
+    var fileName: String = "Order.json"
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu);
@@ -116,6 +119,7 @@ class DetailActivity : AppCompatActivity() {
         pr.append(" Rs")
         return pr.toString()
     }
+
     fun btnOrder(view: View?){
         orderSave(this.order)
 
@@ -129,10 +133,33 @@ class DetailActivity : AppCompatActivity() {
         snackbar.show()
     }
 
-    fun orderSave(order : OrderData){
-        val order = Gson().toJson(order)
-        applicationContext.openFileOutput("Order.json", Context.MODE_PRIVATE).use {
-            it.write(order.toByteArray())
+    private fun orderSave(order : OrderData){
+
+        try {
+            applicationContext.openFileInput(fileName).use { inputStream ->
+                inputStream.bufferedReader().use {
+                    val actual = Gson().fromJson( it.readText(), Array<OrderData>::class.java).toMutableList()
+
+                    this.order.idOrder += 1
+                    order.idOrder += 1
+
+                    actual.add(order)
+
+                    val newOne = Gson().toJson(actual)
+                    applicationContext.openFileOutput(fileName, Context.MODE_PRIVATE).use { outputStream ->
+                        outputStream.write(newOne.toString().toByteArray())
+
+                    }
+                }
+            }
+        } catch(e: FileNotFoundException) {
+            val orders = JsonArray()
+            val parsed = Gson().toJsonTree(order)
+            orders.add(Gson().toJsonTree(parsed))
+
+            applicationContext.openFileOutput(fileName, Context.MODE_PRIVATE).use {
+                it.write(orders.toString().toByteArray())
+            }
         }
     }
 

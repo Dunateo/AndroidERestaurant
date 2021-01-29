@@ -18,7 +18,7 @@ import java.io.FileNotFoundException
 
 class CartActivity :AppCompatActivity() {
 
-    var cart : A<OrderData>? = null
+    var cart : MutableList<OrderData>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,10 +28,10 @@ class CartActivity :AppCompatActivity() {
 
     fun read_file(){
         try {
-            val parser = GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create()
+            val parser = Gson()
             applicationContext.openFileInput("Order.json").use {inputStream ->
                 inputStream.bufferedReader().use {
-                    cart = parser.fromJson(it.readText(), Array<OrderData>::class.java).toList()
+                    cart = parser.fromJson(it.readText(), Array<OrderData>::class.java).toMutableList()
                 }
         }
             val foodRecycler = findViewById<RecyclerView>(R.id.RecyclerViewCart)
