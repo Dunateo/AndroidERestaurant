@@ -1,12 +1,15 @@
 package fr.isen.bru.androiderestaurant
 
+
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import fr.isen.bru.androiderestaurant.domain.FoodData
-import kotlin.collections.ArrayList
+
 
 class HomeActivity : AppCompatActivity() {
 
@@ -20,6 +23,11 @@ class HomeActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         Toast.makeText(this.applicationContext, "Destroy main", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
 

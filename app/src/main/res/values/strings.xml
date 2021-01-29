@@ -3,4 +3,8 @@
     <string name="entree">Entrées</string>
     <string name="plats">Plats</string>
     <string name="dessert">Dessert</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="qt">0</string>
+    <string name="cmd">Commander</string>
 </resources>

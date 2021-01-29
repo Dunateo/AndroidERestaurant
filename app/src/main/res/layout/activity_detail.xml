@@ -50,36 +50,59 @@
         android:gravity="end"
         android:id="@+id/txtPrice"
         />
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent">
-        <Button
-            android:id="@+id/btnUpdate"
-            android:layout_width="120dp"
-            android:layout_height="60dp"
-            android:backgroundTint="@color/colorPrimary"
-            android:text="Update"
-            android:textSize="22sp"
-            android:textColor="#ffffff"
-            android:layout_alignParentBottom="true"
-            android:layout_margin="20dp"
-            android:onClick="btnUpdateRecipe"
-            />
-        <Button
-            android:id="@+id/btnDelete"
-            android:layout_width="120dp"
-            android:layout_height="60dp"
-            android:backgroundTint="@color/colorPrimary"
-            android:text="Delete"
-            android:textSize="22sp"
-            android:textColor="#ffffff"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_margin="20dp"
-            android:onClick="btnDeleteRecipe"
-            />
 
-    </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp">
+            <Button
+                android:id="@+id/btnMinus"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="@string/minus"
+                android:textSize="22sp"
+                android:textColor="#ffffff"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="20dp"
+                android:onClick="quantityDown"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/qt"
+                android:textSize="22sp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/quantityText">
+
+            </TextView>
+            <Button
+                android:id="@+id/btnUp"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="@string/plus"
+                android:textSize="22sp"
+                android:textColor="#ffffff"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_margin="20dp"
+                android:onClick="quantityUp"
+                />
+        </LinearLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/cmd"
+            android:id="@+id/cmd"
+            android:onClick="btnOrder">
+
+        </Button>
+
+
 
     </LinearLayout>
 
