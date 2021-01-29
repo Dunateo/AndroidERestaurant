@@ -11,6 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".CartActivity" />
         <activity android:name=".DetailActivity" />
         <activity android:name=".ListActivity" />
         <activity android:name=".HomeActivity">

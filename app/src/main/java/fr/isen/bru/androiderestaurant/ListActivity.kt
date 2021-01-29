@@ -1,7 +1,9 @@
 package fr.isen.bru.androiderestaurant
 
+
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -11,15 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.Response
-import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.GsonBuilder
 import fr.isen.bru.androiderestaurant.adapter.FoodAdaptater
-import fr.isen.bru.androiderestaurant.domain.FoodData
-import fr.isen.bru.androiderestaurant.domain.PriceData
 import fr.isen.bru.androiderestaurant.domain.ResponseData
-import org.json.JSONException
 import org.json.JSONObject
 
 
@@ -34,6 +32,7 @@ class ListActivity : AppCompatActivity(){
         menuInflater.inflate(R.menu.menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
