@@ -1,6 +1,7 @@
 package fr.isen.bru.androiderestaurant
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -35,7 +36,8 @@ class DetailActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.getItemId()) {
             R.id.menu_item -> {
-                Toast.makeText(this, "Tapped on icon", Toast.LENGTH_SHORT).show()
+                startActivity(
+                    Intent(applicationContext, CartActivity::class.java))
                 true
             }
             else -> super.onOptionsItemSelected(item)
