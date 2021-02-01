@@ -33,6 +33,9 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu);
+        val shared = this.getPreferences(Context.MODE_PRIVATE)
+        val nb = shared.getInt("qtCart", 0)
+        countPastille(nb)
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -134,16 +137,22 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun orderSave(order : OrderData){
+        var actual :MutableList<OrderData>
+        val shared = this.getPreferences(Context.MODE_PRIVATE)
+        val edit = shared.edit()
 
         try {
             applicationContext.openFileInput(fileName).use { inputStream ->
                 inputStream.bufferedReader().use {
-                    val actual = Gson().fromJson( it.readText(), Array<OrderData>::class.java).toMutableList()
+                    actual = Gson().fromJson( it.readText(), Array<OrderData>::class.java).toMutableList()
 
                     this.order.idOrder += 1
                     order.idOrder += 1
 
                     actual.add(order)
+                    val nb = countIteminCart(actual)
+                    countPastille(nb)
+                    edit.putInt("qtCart", nb)
 
                     val newOne = Gson().toJson(actual)
                     applicationContext.openFileOutput(fileName, Context.MODE_PRIVATE).use { outputStream ->
@@ -152,6 +161,8 @@ class DetailActivity : AppCompatActivity() {
                     }
                 }
             }
+
+
         } catch(e: FileNotFoundException) {
             val orders = JsonArray()
             val parsed = Gson().toJsonTree(order)
@@ -160,8 +171,24 @@ class DetailActivity : AppCompatActivity() {
             applicationContext.openFileOutput(fileName, Context.MODE_PRIVATE).use {
                 it.write(orders.toString().toByteArray())
             }
+            edit.putInt("qtCart", 0)
+
         }
+        edit.apply()
+
+
     }
 
+    private fun countPastille(num :Int){
+        val countText = findViewById<TextView>(R.id.numberCart)
+        countText.text = num.toString()
+    }
 
+    private  fun countIteminCart(list : MutableList<OrderData>) : Int{
+        var count:Int = 0
+        for (content in list){
+            count += content.quantity
+        }
+        return count
+    }
 }

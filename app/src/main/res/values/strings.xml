@@ -8,4 +8,7 @@
     <string name="qt">0</string>
     <string name="cmd">Commander</string>
     <string name="titleCart">Résumé de votre commande:</string>
+    <string name="cart">cart</string>
+    <string name="iconcart">IconCart</string>
+    <string name="nb">nb</string>
 </resources>

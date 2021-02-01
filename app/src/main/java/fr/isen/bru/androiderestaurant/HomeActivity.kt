@@ -1,12 +1,14 @@
 package fr.isen.bru.androiderestaurant
 
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import fr.isen.bru.androiderestaurant.domain.FoodData
@@ -28,6 +30,9 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu);
+        val shared = this.getPreferences(Context.MODE_PRIVATE)
+        val nb = shared.getInt("qtCart", 0)
+        countPastille(nb)
         return super.onCreateOptionsMenu(menu);
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -62,6 +67,10 @@ class HomeActivity : AppCompatActivity() {
                 .putExtra("title",string )
                 .putExtra("cat", category)
         )
+    }
+    private fun countPastille(num :Int){
+        val countText = findViewById<TextView>(R.id.numberCart)
+        countText.text = num.toString()
     }
 
 
