@@ -31,8 +31,14 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu);
         val shared = this.getPreferences(Context.MODE_PRIVATE)
-        val nb = shared.getInt("qtCart", 0)
-        countPastille(nb)
+
+        try {
+            val nb = shared.getInt("qtCart", 0)
+            countPastille(nb)
+        }catch (e : Exception){
+            countPastille(0)
+        }
+
         return super.onCreateOptionsMenu(menu);
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
