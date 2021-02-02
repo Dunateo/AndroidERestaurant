@@ -33,18 +33,12 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu);
-        val shared = this.getPreferences(Context.MODE_PRIVATE)
-        try {
-            val nb = shared.getInt("qtCart", 0)
-            countPastille(nb)
-        }catch (e : Exception){
-            countPastille(0)
-        }
         return super.onCreateOptionsMenu(menu);
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.getItemId()) {
+
+        return when (item.itemId) {
             R.id.menu_item -> {
                 startActivity(
                     Intent(applicationContext, CartActivity::class.java))
@@ -142,7 +136,7 @@ class DetailActivity : AppCompatActivity() {
 
     private fun orderSave(order : OrderData){
         var actual :MutableList<OrderData>
-        val shared = this.getPreferences(Context.MODE_PRIVATE)
+        val shared = this.getSharedPreferences(getString(R.string.fileName), Context.MODE_PRIVATE)
         val edit = shared.edit()
 
         try {
@@ -156,7 +150,7 @@ class DetailActivity : AppCompatActivity() {
                     actual.add(order)
                     val nb = countIteminCart(actual)
                     countPastille(nb)
-                    edit.putInt("qtCart", nb)
+                    edit.putInt("qt", nb)
 
                     val newOne = Gson().toJson(actual)
                     applicationContext.openFileOutput(fileName, Context.MODE_PRIVATE).use { outputStream ->
@@ -175,7 +169,7 @@ class DetailActivity : AppCompatActivity() {
             applicationContext.openFileOutput(fileName, Context.MODE_PRIVATE).use {
                 it.write(orders.toString().toByteArray())
             }
-            edit.putInt("qtCart", 0)
+            edit.putInt("qt", 0)
 
         }
         edit.apply()
@@ -184,7 +178,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun countPastille(num :Int){
-        val countText = findViewById<TextView>(R.id.numberCart)
+        val countText = findViewById<TextView>(R.id.menu_numb)
         countText.text = num.toString()
     }
 

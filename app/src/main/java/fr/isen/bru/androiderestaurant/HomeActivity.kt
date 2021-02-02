@@ -12,15 +12,43 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import fr.isen.bru.androiderestaurant.domain.FoodData
+import java.lang.IllegalStateException
 
 
 class HomeActivity : AppCompatActivity() {
 
     var myFoodList: List<FoodData>? = null
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu);
+
+
+        return super.onCreateOptionsMenu(menu);
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+
+
+        return when (item.itemId) {
+
+            R.id.menu_item -> {
+                startActivity(
+                    Intent(applicationContext, CartActivity::class.java)
+                )
+
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+
+
+        }
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
     }
 
     override fun onDestroy() {
@@ -28,30 +56,7 @@ class HomeActivity : AppCompatActivity() {
         Toast.makeText(this.applicationContext, "Destroy main", Toast.LENGTH_SHORT).show()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu, menu);
-        val shared = this.getPreferences(Context.MODE_PRIVATE)
 
-        try {
-            val nb = shared.getInt("qtCart", 0)
-            countPastille(nb)
-        }catch (e : Exception){
-            countPastille(0)
-        }
-
-        return super.onCreateOptionsMenu(menu);
-    }
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.menu_item -> {
-                startActivity(
-                    Intent(applicationContext, CartActivity::class.java)
-                )
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
 
     fun btnMenu(view: View?) {
         if (R.id.entree == view?.id){
@@ -74,8 +79,14 @@ class HomeActivity : AppCompatActivity() {
                 .putExtra("cat", category)
         )
     }
-    private fun countPastille(num :Int){
-        val countText = findViewById<TextView>(R.id.numberCart)
+    private fun countPastille(menuItem: MenuItem){
+        val shared = this.getSharedPreferences(getString(R.string.fileName),Context.MODE_PRIVATE)
+        var num :Int = 0
+       if (shared.contains("qt")){
+            num = shared.getInt("qt",0)
+       }
+
+        val countText = menuItem.actionView.findViewById<TextView>(R.id.numberCart)
         countText.text = num.toString()
     }
 

@@ -2,6 +2,7 @@ package fr.isen.bru.androiderestaurant
 
 import android.content.Context
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -26,7 +27,11 @@ class CartActivity :AppCompatActivity() {
         read_file()
     }
 
-    fun read_file(){
+     fun floattingButton(view: View?){
+        Toast.makeText(applicationContext, "truc", Toast.LENGTH_LONG).show()
+    }
+
+    private fun read_file(){
         try {
             val parser = Gson()
             applicationContext.openFileInput("Order.json").use {inputStream ->

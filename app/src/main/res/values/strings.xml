@@ -5,10 +5,12 @@
     <string name="dessert">Dessert</string>
     <string name="plus">+</string>
     <string name="minus">-</string>
-    <string name="qt">0</string>
+    <string name="qt">1</string>
     <string name="cmd">Commander</string>
     <string name="titleCart">Résumé de votre commande:</string>
     <string name="cart">cart</string>
     <string name="iconcart">IconCart</string>
     <string name="nb">nb</string>
+    <string name="fileName">qtCart</string>
+    <string name="submit">submit</string>
 </resources>
