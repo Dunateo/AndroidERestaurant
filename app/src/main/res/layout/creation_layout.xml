@@ -69,7 +69,8 @@
             android:layout_marginStart="130dp"
             android:id="@+id/submitCreate"
             android:layout_marginTop="20sp"
-            android:text="@string/submit">
+            android:text="@string/submit"
+            android:onClick="register">
 
         </androidx.appcompat.widget.AppCompatButton>
         <Button

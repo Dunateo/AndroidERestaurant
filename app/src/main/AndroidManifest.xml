@@ -13,6 +13,7 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".CartActivity" />
         <activity android:name=".UserCreatActivity" />
+        <activity android:name=".SignInActivity" />
         <activity android:name=".DetailActivity" />
         <activity android:name=".ListActivity" />
         <activity android:name=".HomeActivity">
