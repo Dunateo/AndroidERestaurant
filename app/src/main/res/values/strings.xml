@@ -13,4 +13,11 @@
     <string name="nb">nb</string>
     <string name="fileName">qtCart</string>
     <string name="submit">submit</string>
+    <string name="username">Username</string>
+    <string name="name">name</string>
+    <string name="lastname">lastname</string>
+    <string name="street">street</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="already_safary">already safary</string>
 </resources>

@@ -1,6 +1,7 @@
 package fr.isen.bru.androiderestaurant
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
@@ -28,7 +29,7 @@ class CartActivity :AppCompatActivity() {
     }
 
      fun floattingButton(view: View?){
-        Toast.makeText(applicationContext, "truc", Toast.LENGTH_LONG).show()
+         startActivity(Intent(applicationContext, UserCreatActivity::class.java))
     }
 
     private fun read_file(){

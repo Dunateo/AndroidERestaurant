@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/name"
+            android:textSize="30sp"
+            android:layout_marginStart="130dp"
+            android:inputType="textPersonName"
+            android:id="@+id/name"
+            android:layout_marginTop="20sp">
+        </EditText>
+
+
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/lastname"
+            android:textSize="30sp"
+            android:layout_marginStart="130dp"
+            android:inputType="textPersonName"
+            android:id="@+id/lastname"
+            android:layout_marginTop="20sp">
+        </EditText>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/street"
+            android:textSize="30sp"
+            android:layout_marginStart="130dp"
+            android:inputType="textPostalAddress"
+            android:id="@+id/street"
+            android:layout_marginTop="20sp">
+        </EditText>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/email"
+            android:textSize="30sp"
+            android:layout_marginStart="130dp"
+            android:inputType="textEmailAddress"
+            android:id="@+id/email"
+            android:layout_marginTop="20sp">
+        </EditText>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:textSize="30sp"
+            android:layout_marginStart="130dp"
+            android:inputType="textPassword"
+            android:id="@+id/pass"
+            android:layout_marginTop="20sp">
+        </EditText>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="130dp"
+            android:id="@+id/submitCreate"
+            android:layout_marginTop="20sp"
+            android:text="@string/submit">
+
+        </androidx.appcompat.widget.AppCompatButton>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/already_safary"
+            android:layout_marginStart="130dp"
+            android:id="@+id/already"
+            android:onClick="alreadyHaveAnAccount">
+
+
+        </Button>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
