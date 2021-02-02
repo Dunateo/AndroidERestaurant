@@ -6,14 +6,17 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import fr.isen.bru.androiderestaurant.domain.RegisterData
 import fr.isen.bru.androiderestaurant.domain.UserData
+import kotlinx.android.synthetic.main.creation_layout.view.*
 import org.json.JSONObject
 
 class UserCreatActivity : AppCompatActivity(){
@@ -48,11 +51,11 @@ class UserCreatActivity : AppCompatActivity(){
     fun register(view: View?){
         val user : UserData? = structureUserData()
         if (user != null){
-            signUp(user, view)
+            val queue = Volley.newRequestQueue(this)
+            val req = signUp(user)
+            queue.add(req)
         }else{
-            if (view != null) {
-                Snackbar.make(view, "Some of the form is null", Snackbar.LENGTH_SHORT)
-            }
+                Toast.makeText(applicationContext, "Some of the form is null",Toast.LENGTH_SHORT).show()
         }
 
     }
@@ -65,7 +68,7 @@ class UserCreatActivity : AppCompatActivity(){
         return null
     }
 
-    private fun signUp(user: UserData, view: View?): JsonObjectRequest {
+    private fun signUp(user: UserData): JsonObjectRequest {
 
         val params = JSONObject()
         params.put("id_shop", "1")
@@ -81,19 +84,19 @@ class UserCreatActivity : AppCompatActivity(){
                         putInt("id", it.id)
                         apply() }
 
-                    if (view != null) {
-                        Snackbar.make(view, "register !", Snackbar.LENGTH_SHORT)
-                    }
+                    Toast.makeText(applicationContext, "register !", Toast.LENGTH_SHORT).show()
 
                 }
             },
-            Response.ErrorListener { error ->
+            Response.ErrorListener {
+                System.err.println(it)
 
-                if (view != null) {
-                    Snackbar.make(view, "failed to register! check the form", Snackbar.LENGTH_SHORT)
-                }
+                    Toast.makeText(applicationContext, "failed to register! check the form", Toast.LENGTH_SHORT).show()
+
 
             }
         )
     }
+
+
 }

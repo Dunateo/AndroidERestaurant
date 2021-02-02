@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/email"
+            android:textSize="30sp"
+            android:layout_marginStart="130dp"
+            android:inputType="textEmailAddress"
+            android:id="@+id/emailIn"
+            android:layout_marginTop="20sp">
+        </EditText>
+
+
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:textSize="30sp"
+            android:layout_marginStart="130dp"
+            android:inputType="textPassword"
+            android:id="@+id/passIn"
+            android:layout_marginTop="20sp">
+        </EditText>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="130dp"
+            android:id="@+id/submitIn"
+            android:layout_marginTop="20sp"
+            android:text="@string/log_in"
+            android:onClick="logIn">
+
+        </androidx.appcompat.widget.AppCompatButton>
+
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
