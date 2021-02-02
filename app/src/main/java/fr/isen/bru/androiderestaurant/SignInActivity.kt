@@ -1,6 +1,7 @@
 package fr.isen.bru.androiderestaurant
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
@@ -22,8 +23,8 @@ class SignInActivity : AppCompatActivity(){
     var email: EditText? = null
     val url : String = "http://test.api.catering.bluecodegames.com/user/login"
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signin)
 
         email = findViewById<EditText>(R.id.emailIn)
@@ -38,9 +39,12 @@ class SignInActivity : AppCompatActivity(){
             val queue = Volley.newRequestQueue(this)
             val req = signIn(user)
             queue.add(req)
+            Toast.makeText(applicationContext, "Welcome back", Toast.LENGTH_SHORT).show()
+            redirect()
         }else{
             Toast.makeText(applicationContext, "Not the good mail or password",Toast.LENGTH_SHORT).show()
         }
+
     }
 
 
@@ -68,12 +72,16 @@ class SignInActivity : AppCompatActivity(){
                         putInt("id", it.id)
                         apply() }
 
-                    Toast.makeText(applicationContext, "Welcome back", Toast.LENGTH_SHORT).show()
+
                 }
             },
             Response.ErrorListener { error ->
                 System.err.println(error)
             })
+    }
+
+    private fun redirect(){
+        startActivity(Intent(applicationContext, HomeActivity::class.java))
     }
 
 }
